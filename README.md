@@ -43,4 +43,4 @@
 
 ## 📬 Contact
 - [LinkedIn](https://www.linkedin.com/in/lucas-gabriel-da-silva-gonçalves-239a3917a)  
-- **luc.gabriel.2011@gmail.com**
+- [Send me an email](mailto:luc.gabriel.2011@gmail.com?subject=GitHub%20Collaboration&body=Hi%20Lucas,%20I%20found%20your%20profile%20on%20GitHub%20and%20would%20like%20to%20connect.)
