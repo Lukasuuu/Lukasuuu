@@ -24,7 +24,7 @@
 
 ---
 
-## 🐍 Ultra-Holographic Contribution Snake
+## 🐍 Snake Action
 
 <p align="center">
   <picture>
