@@ -64,7 +64,7 @@ MODELO ANTIGO DE ICONS
 <picture>
 <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Lukasuuu/output/github-contribution-grid-snake-dark.svg">
 <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Lukasuuu/output/github-contribution-grid-snake.svg">
-<img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Lukasuuu.github.io/github-contribution-grid-snake.svg">
+<img alt="github contribution grid snake animation" src="https://Lukasuuu.github.io/Lukasuuu/github-contribution-grid-snake.svg">
 </picture>
 
 
@@ -88,7 +88,7 @@ MODELO ANTIGO DE ICONS
 <picture>
 <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Lukasuuu/output/github-contribution-grid-snake-dark.svg">
 <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Lukasuuu/output/github-contribution-grid-snake.svg">
-<img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Lukasuuu.github.io/Lukasuuu/github-contribution-grid-snake.svg">
+<img alt="github contribution grid snake animation" src="https://Lukasuuu.github.io/Lukasuuu/github-contribution-grid-snake.svg">
 </picture>
 
  
