@@ -4,8 +4,6 @@
 🌎 Always learning, exploring new technologies, and improving my craft.  
 🎮 Passionate about coding, gaming, and innovation.  
 
----
-
 ## 🚀 Skills
 <p align="center">
   <a href="https://skillicons.dev">
@@ -33,7 +31,7 @@
 </p>
 
 ---
-
+---
 ## 🌟 Featured Projects
 - [Snake Animation Ultra-Holographic](https://github.com/Lukasuuu/Lukasuuu)  
 - [Web Portfolio](https://github.com/Lukasuuu/portfolio)  
