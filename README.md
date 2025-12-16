@@ -22,7 +22,6 @@
   </a>
 </div>
 
----
 
 ## 🐍 Snake Animation
 
