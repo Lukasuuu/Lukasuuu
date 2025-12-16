@@ -3,7 +3,7 @@ name: Snake Animation
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 * * * *"  # Atualiza a cada hora
+    - cron: "0 * * * *"
   push:
     branches:
       - main
@@ -28,7 +28,7 @@ jobs:
 
       - name: Gerar Snake GIF Dark e Light
         run: |
-          python << 'EOF'
+          python - << 'PYTHON'
           from PIL import Image, ImageDraw, ImageFilter
           import numpy as np
           from datetime import datetime
@@ -42,16 +42,13 @@ jobs:
           frames = 720
           duration = 12
 
-          # Pastas de output
           os.makedirs('output', exist_ok=True)
           gifs = {'dark': 'output/snake_animation_dark.gif',
                   'light': 'output/snake_animation_light.gif'}
 
-          # Função principal de geração
           def generate_gif(bg_color_array, output_file):
               now = datetime.utcnow()
               t_initial = (now.hour + now.minute/60 + now.second/3600)/24
-
               result = subprocess.run(["git", "rev-list", "--count", "HEAD"], capture_output=True, text=True)
               commits = int(result.stdout.strip())
               max_commits = 100
@@ -143,16 +140,14 @@ jobs:
                   for y0, x0 in zip(ys, xs):
                       color = tuple(np.clip(grid[y0,x0],0,255).astype(int))
                       draw.rectangle([x0*pixel_size, y0*pixel_size, (x0+1)*pixel_size-gap, (y0+1)*pixel_size-gap], fill=color)
-
                   img = img.filter(ImageFilter.GaussianBlur(radius=3))
                   images.append(img)
 
               images[0].save(output_file, save_all=True, append_images=images[1:], duration=duration, loop=0)
 
-          # Geração dos GIFs dark/light
           generate_gif(np.array([0,0,0], dtype=np.float32), gifs['dark'])
           generate_gif(np.array([30,30,30], dtype=np.float32), gifs['light'])
-          EOF
+          PYTHON
 
       - name: Commit e push automático
         run: |
