@@ -9,9 +9,16 @@
 ## 🚀 Skills
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=c,cpp,cs,java,py,js,linux,git,mysql,react,html,css,wordpress,bootstrap" />
+    <img src="https://skillicons.dev/icons?i=c,cpp,cs,java,py,js,linux,git,github,mysql,react,html,css,wordpress,bootstrap" />
   </a>
 </p>
+
+<div align="center"> 
+  <a href="https://www.linkedin.com/in/lucas-gabriel-da-silva-gonçalves-239a3917a" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+  <a href="mailto:luc.gabriel.2011@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+  <a href="https://instagram.com/lukasu.gabriel" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
+ 	<a href="https://www.twitch.tv/lukasuuuuu" target="_blank"><img src="https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white" target="_blank"></a>
+</div>
 
 ---
 
@@ -31,14 +38,3 @@
     <img alt="GitHub contribution snake animation" src="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/main/output/snake_animation_light.gif" />
   </picture>
 </p>
-
----
-
-## 📬 Contact
-- [LinkedIn](https://www.linkedin.com/in/lucas-gabriel-da-silva-gonçalves-239a3917a)  
-- [Email](mailto:luc.gabriel.2011@gmail.com?subject=GitHub%20Collaboration&body=Hi%20Lucas,%20I%20found%20your%20profile%20on%20GitHub%20and%20would%20like%20to%20connect.)
-
-  ---
-🌟 Featured Projects  
-- [Portfolio](https://github.com/Lukasuuu/portfolio)  
-- [Bot](https://github.com/Lukasuuu/automation-bot)
