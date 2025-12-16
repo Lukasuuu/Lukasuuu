@@ -1,6 +1,6 @@
 # Lukasu
 ## Hi there, welcome to my world! 💻🌎
----
+
 <p align="center">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=c,cpp,cs,java,py,js,linux,git,mysql,react,html,css,wordpress,bootstrap" />
@@ -24,7 +24,7 @@
 
 ---
 
-## 🐍 Snake
+## 🐍 Snake Animation
 
 <p align="center">
   <picture>
