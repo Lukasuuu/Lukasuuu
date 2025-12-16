@@ -4,8 +4,8 @@
  <!-- STATUS das linguagens 
  
   <div>
-   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Hewllsing&show_icons=true&theme=radical">
-   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Hewllsing&layout=compact&theme=radical">
+   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Lukasuuug&show_icons=true&theme=radical">
+   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Lukasuuu&layout=compact&theme=radical">
   </div>-->
 
 
