@@ -95,6 +95,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          
           git add output/*.gif
           git commit -m "Atualiza snake ultra-holográfica README-ready 24h interativa" || echo "Sem alterações para commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
