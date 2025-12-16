@@ -1,4 +1,4 @@
-name: Snake Animation
+name: Snake Animation 24h Ultra-Holographic
 
 on:
   workflow_dispatch:
@@ -34,7 +34,7 @@ jobs:
       - name: Gerar Snake GIF Dark e Light
         run: |
           python - << 'PYTHON'
-          from PIL import Image, ImageDraw, ImageFilter
+          from PIL import Image, ImageDraw
           import numpy as np
           from datetime import datetime
           import subprocess
@@ -43,116 +43,52 @@ jobs:
           width, height = 60, 12
           pixel_size = 20
           gap = 3
-          base_snake_width = 2
+          snake_width = 2
           frames = 720
           duration = 12
-
           output_dir = os.path.join(os.getcwd(), "output")
           gifs = {
               'dark': os.path.join(output_dir, 'snake_animation_dark.gif'),
               'light': os.path.join(output_dir, 'snake_animation_light.gif')
           }
 
-          def generate_gif(bg_color_array, output_file):
+          # Conta commits para ajustar intensidade da snake
+          result = subprocess.run(["git", "rev-list", "--count", "HEAD"], capture_output=True, text=True)
+          commits = int(result.stdout.strip())
+          brightness_factor = min(commits/100, 1.0)
+
+          def generate_gif(bg_color, output_file):
               now = datetime.utcnow()
               t_initial = (now.hour + now.minute/60 + now.second/3600)/24
-              result = subprocess.run(["git", "rev-list", "--count", "HEAD"], capture_output=True, text=True)
-              commits = int(result.stdout.strip())
-              max_commits = 100
-              brightness = min(commits/max_commits,1.0)
-              snake_length = int(5 + brightness*30)
-              snake_speed = int(1 + brightness*6)
-
               images = []
               trail = np.zeros((height, width, 3), dtype=np.float32)
-              wave = np.zeros((height, width), dtype=np.float32)
-              light_reflection = np.zeros((height, width, 3), dtype=np.float32)
-              num_particles = 50
-              particles = np.random.rand(num_particles,3)
-              particles[:,0] *= width
-              particles[:,1] *= height
-              particles[:,2] *= 1.0
-
               for f in range(frames):
                   t = (t_initial + f/frames) % 1.0
                   day_factor = 0.5 + 0.5*np.sin((t-0.25)*2*np.pi)
                   grid = np.copy(trail)
                   grid *= 0.8
-                  wave *= 0.9
-                  light_reflection *= 0.95
-
-                  def rainbow_color(pos, shift, intensity):
-                      h = (pos*360 + shift) % 360
-                      c = int(255*intensity)
-                      x = int((1 - abs((h / 60) % 2 - 1)) * c)
-                      if h < 60: return np.array([c,x,0], dtype=np.float32)
-                      if h < 120: return np.array([x,c,0], dtype=np.float32)
-                      if h < 180: return np.array([0,c,x], dtype=np.float32)
-                      if h < 240: return np.array([0,x,c], dtype=np.float32)
-                      if h < 300: return np.array([x,0,c], dtype=np.float32)
-                      return np.array([c,0,x], dtype=np.float32)
-
                   y_center = height//2
-                  snake_positions = []
-
-                  for i in range(snake_length):
-                      y_offset = int(np.sin((f*snake_speed + i)/4 + brightness*10) * 3)
-                      x = (f*snake_speed + i) % width
+                  for i in range(5 + int(brightness_factor*30)):
+                      y_offset = int(np.sin((f + i)/4) * 3)
+                      x = (f + i) % width
                       y = y_center + y_offset
-                      color = rainbow_color(i/snake_length, f + commits*5, day_factor)
-                      snake_positions.append((x,y))
-                      for w in range(base_snake_width):
-                          yy = y + w - base_snake_width//2
+                      color = (int(255*day_factor), 255, int(255*brightness_factor))
+                      for w in range(snake_width):
+                          yy = y + w - snake_width//2
                           if 0 <= yy < height:
-                              grid[yy,x] = color
-                              for dx in [-1,0,1]:
-                                  for dy in [-1,0,1]:
-                                      nx, ny = x+dx, yy+dy
-                                      if 0 <= nx < width and 0 <= ny < height:
-                                          trail[ny,nx] = np.maximum(trail[ny,nx], color)
-                                          wave[ny,nx] = day_factor
-                                          light_reflection[ny,nx] = np.maximum(light_reflection[ny,nx], color*0.25)
-
-                  for p in particles:
-                      for sx, sy in snake_positions:
-                          dist = np.hypot(p[0]-sx, p[1]-sy)
-                          if dist < 2.5:
-                              p[0] += (p[0]-sx)/4
-                              p[1] += (p[1]-sy)/4
-                              p[2] = min(1.0, p[2]+0.3)
-                      p[0] += np.random.uniform(-0.15,0.15)
-                      p[1] += np.random.uniform(-0.1,0.1)
-                      p[0] = np.clip(p[0],0,width-1)
-                      p[1] = np.clip(p[1],0,height-1)
-                      p[2] *= 0.95
-                      if np.random.rand() < 0.05: p[2] = 1.0
-                      px, py = int(p[0]), int(p[1])
-                      grid[py,px] = np.maximum(grid[py,px], np.array([255,255,255])*p[2])
-
-                  for y in range(height):
-                      for x in range(width):
-                          if wave[y,x] > 0.05:
-                              for dx in [-1,0,1]:
-                                  for dy in [-1,0,1]:
-                                      nx, ny = x+dx, y+dy
-                                      if 0 <= nx < width and 0 <= ny < height:
-                                          wave[ny,nx] = max(wave[ny,nx], wave[y,x]*0.7)
-
-                  grid += (wave[:,:,np.newaxis]*255*(0.5 + 0.5*np.sin(f/8)))
-                  grid += light_reflection
-
-                  img = Image.new('RGB', (width*pixel_size, height*pixel_size), tuple(bg_color_array.astype(int)))
+                              grid[yy, x] = color
+                  img = Image.new('RGB', (width*pixel_size, height*pixel_size), tuple(bg_color))
                   draw = ImageDraw.Draw(img)
-                  ys, xs = np.where(np.any(grid.astype(int) != 0, axis=2))
-                  for y0, x0 in zip(ys, xs):
-                      color = tuple(np.clip(grid[y0,x0],0,255).astype(int))
-                      draw.rectangle([x0*pixel_size, y0*pixel_size, (x0+1)*pixel_size-gap, (y0+1)*pixel_size-gap], fill=color)
+                  for y0 in range(height):
+                      for x0 in range(width):
+                          c = tuple(np.clip(grid[y0,x0],0,255).astype(int))
+                          if np.any(c != bg_color):
+                              draw.rectangle([x0*pixel_size, y0*pixel_size, (x0+1)*pixel_size-gap, (y0+1)*pixel_size-gap], fill=c)
                   images.append(img)
-
               images[0].save(output_file, save_all=True, append_images=images[1:], duration=duration, loop=0)
 
-          generate_gif(np.array([0,0,0], dtype=np.float32), gifs['dark'])
-          generate_gif(np.array([30,30,30], dtype=np.float32), gifs['light'])
+          generate_gif(np.array([0,0,0], dtype=np.uint8), gifs['dark'])
+          generate_gif(np.array([30,30,30], dtype=np.uint8), gifs['light'])
           PYTHON
 
       - name: Commit e push automático usando GITHUB_TOKEN
@@ -162,4 +98,3 @@ jobs:
           git add output/*.gif
           git commit -m "Atualiza snake ultra-holográfica README-ready 24h interativa" || echo "Sem alterações para commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-
