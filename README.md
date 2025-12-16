@@ -24,14 +24,14 @@
 
 ---
 
-## 🐍 Snake Action
+## 🐍 Snake Animation
 
 <p align="center">
   <picture>
-    <!-- GIF dark mode -->
+    <!-- Dark mode GIF -->
     <source media="(prefers-color-scheme: dark)" 
             srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/main/output/snake_animation_dark.gif" />
-    <!-- GIF light mode -->
+    <!-- Light mode GIF -->
     <source media="(prefers-color-scheme: light)" 
             srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/main/output/snake_animation_light.gif" />
     <!-- fallback padrão -->
