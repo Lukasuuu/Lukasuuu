@@ -60,35 +60,15 @@ MODELO ANTIGO DE ICONS
   
   ## 
   
-<!-- SNAKE COMMIT'S -->
+## 🐍 Contribution Snake
+
 <picture>
-<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake-dark.svg">
-<source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake.svg">
-<img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake.svg">
-</picture>
-
-
- 
-
-<!--
-<p align="left">
-<a href="https://www.linkedin.com/in/lucas-gabriel-da-silva-gonçalves-239a3917a">
-    <img src="https://skillicons.dev/icons?i=linkedin" />
-  </a>
-  <a href="mailto:luc.gabriel.2011@gmail.com">
-    <img src="https://skillicons.dev/icons?i=gmail&theme=light" />
-  </a>
-  <a href="https://instagram.com/lukasu.gabriel">
-    <img src="https://skillicons.dev/icons?i=instagram" />
-  </a>
-</p> 
--->
-  
-  ## 
-<picture>
-<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake-dark.svg">
-<source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake.svg">
-<img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake.svg">
+  <source media="(prefers-color-scheme: dark)"
+    srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)"
+    srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake.svg" />
+  <img alt="GitHub contribution snake animation"
+    src="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake.svg" />
 </picture>
 
  
