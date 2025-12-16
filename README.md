@@ -4,6 +4,8 @@
 🌎 Always learning, exploring new technologies, and improving my craft.  
 🎮 Passionate about coding, gaming, and innovation.  
 
+---
+
 ## 🚀 Skills
 <p align="center">
   <a href="https://skillicons.dev">
@@ -31,14 +33,12 @@
 </p>
 
 ---
----
-## 🌟 Featured Projects
-- [Snake Animation Ultra-Holographic](https://github.com/Lukasuuu/Lukasuuu)  
-- [Web Portfolio](https://github.com/Lukasuuu/portfolio)  
-- [Automation Bot](https://github.com/Lukasuuu/automation-bot)  
-
----
 
 ## 📬 Contact
 - [LinkedIn](https://www.linkedin.com/in/lucas-gabriel-da-silva-gonçalves-239a3917a)  
 - [Email](mailto:luc.gabriel.2011@gmail.com?subject=GitHub%20Collaboration&body=Hi%20Lucas,%20I%20found%20your%20profile%20on%20GitHub%20and%20would%20like%20to%20connect.)
+
+  ---
+🌟 Featured Projects  
+- [Portfolio](https://github.com/Lukasuuu/portfolio)  
+- [Bot](https://github.com/Lukasuuu/automation-bot)
