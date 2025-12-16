@@ -1,5 +1,5 @@
 # Lukasu
-### Hi there, welcome to my world! 💻🌎
+## Hi there, welcome to my world! 💻🌎
 
  <!-- STATUS das linguagens 
  
