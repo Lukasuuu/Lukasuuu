@@ -1,36 +1,45 @@
 name: Snake Animation 24h Ultra-Holographic
 
+# 🔑 Permissões necessárias para que o GITHUB_TOKEN consiga dar push
+permissions:
+  contents: write
+
 on:
-  workflow_dispatch:
+  workflow_dispatch:   # Permite rodar manualmente
   schedule:
     - cron: "0 * * * *"  # Executa a cada hora
   push:
     branches:
-      - main
+      - main            # Só roda quando há push na branch main
 
 jobs:
   generate:
     runs-on: ubuntu-latest
 
     steps:
+      # 📥 Faz checkout do repositório
       - name: Checar repositório
         uses: actions/checkout@v3
 
+      # 🐍 Configura Python 3.11
       - name: Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
+      # 📦 Instala dependências necessárias
       - name: Instalar dependências
         run: |
           python -m pip install --upgrade pip
           pip install pillow numpy
 
+      # 📂 Garante que a pasta output existe
       - name: Garantir pasta output
         run: |
           mkdir -p $GITHUB_WORKSPACE/output
           touch $GITHUB_WORKSPACE/output/.gitkeep
 
+      # 🎨 Gera os GIFs da snake (dark e light)
       - name: Gerar Snake GIF Dark e Light
         run: |
           python - << 'PYTHON'
@@ -91,11 +100,11 @@ jobs:
           generate_gif(np.array([30,30,30], dtype=np.uint8), gifs['light'])
           PYTHON
 
+      # 💾 Faz commit e push dos GIFs gerados
       - name: Commit e push automático usando GITHUB_TOKEN
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          
           git add output/*.gif
           git commit -m "Atualiza snake ultra-holográfica README-ready 24h interativa" || echo "Sem alterações para commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git push   # ✅ Agora funciona porque temos permissions: write
