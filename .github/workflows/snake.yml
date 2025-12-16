@@ -98,11 +98,11 @@ jobs:
           images[0].save('snake_animation.gif', save_all=True, append_images=images[1:], duration=duration, loop=0)
           EOF
 
-      - name: Fazer commit do GIF
-        run: |
+          - name: Fazer commit do GIF
+          run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add snake_animation.gif
-          git commit -m "Atualiza animação neon da snake 24h realista"
-          git push
+          git commit -m "Atualiza animação neon da snake 24h realista" || echo "Sem alterações para commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
 
