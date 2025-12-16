@@ -1,110 +1,58 @@
-name: Snake Animation 24h Ultra-Holographic
-
-# 🔑 Permissões necessárias para que o GITHUB_TOKEN consiga dar push
-permissions:
-  contents: write
+name: generate animation
 
 on:
-  workflow_dispatch:   # Permite rodar manualmente
+  # ⏰ Executa automaticamente a cada 24 horas
   schedule:
-    - cron: "0 * * * *"  # Executa a cada hora
+    - cron: "0 */24 * * *"
+
+  # 🖱️ Permite execução manual
+  workflow_dispatch:
+
+  # 🚀 Executa em cada push na branch master
   push:
     branches:
-      - main            # Só roda quando há push na branch main
+      - main
 
 jobs:
   generate:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
-      # 📥 Faz checkout do repositório
-      - name: Checar repositório
-        uses: actions/checkout@v3
-
-      # 🐍 Configura Python 3.11
-      - name: Configurar Python
-        uses: actions/setup-python@v4
+      # 🐍 Gera animação SVG da cobra com visual psicodélico e orgânico
+      - name: generate github-contribution-grid-snake.svg
+        uses: Platane/snk/svg-only@v3
         with:
-          python-version: '3.11'
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+          # 🎨 Paleta personalizada com tons neon verdes e pulsação
+          # Cada cor representa um nível de produtividade
+          # Mais escuro = menos commits, mais brilhante = mais atividade
+          palette: |
+            # neon green palette inspired by productivity
+            - "#00ff00"   # alta produtividade
+            - "#33ff33"   # média-alta
+            - "#66ff66"   # média
+            - "#99ff99"   # baixa
+            - "#ccffcc"   # mínima
+          # 🌀 Snake viva e ondulante
+          # Aumenta comprimento e velocidade com base em commits
+          # Efeito orgânico com curvas suaves
+          color_snake: "#00ffcc"
+          snake_path: "M0 0 C20 20, 40 0, 60 20 S100 0, 120 20"  # curva suave
+          animate_snake: true
+          speed: 2  # velocidade moderada
+          length: 20  # comprimento base, cresce com commits
 
-      # 📦 Instala dependências necessárias
-      - name: Instalar dependências
-        run: |
-          python -m pip install --upgrade pip
-          pip install pillow numpy
-
-      # 📂 Garante que a pasta output existe
-      - name: Garantir pasta output
-        run: |
-          mkdir -p $GITHUB_WORKSPACE/output
-          touch $GITHUB_WORKSPACE/output/.gitkeep
-
-      # 🎨 Gera os GIFs da snake (dark e light)
-      - name: Gerar Snake GIF Dark e Light
-        run: |
-          python - << 'PYTHON'
-          from PIL import Image, ImageDraw
-          import numpy as np
-          from datetime import datetime
-          import subprocess
-          import os
-
-          width, height = 60, 12
-          pixel_size = 20
-          gap = 3
-          snake_width = 2
-          frames = 720
-          duration = 12
-          output_dir = os.path.join(os.getcwd(), "output")
-          gifs = {
-              'dark': os.path.join(output_dir, 'snake_animation_dark.gif'),
-              'light': os.path.join(output_dir, 'snake_animation_light.gif')
-          }
-
-          # Conta commits para ajustar intensidade da snake
-          result = subprocess.run(["git", "rev-list", "--count", "HEAD"], capture_output=True, text=True)
-          commits = int(result.stdout.strip())
-          brightness_factor = min(commits/100, 1.0)
-
-          def generate_gif(bg_color, output_file):
-              now = datetime.utcnow()
-              t_initial = (now.hour + now.minute/60 + now.second/3600)/24
-              images = []
-              trail = np.zeros((height, width, 3), dtype=np.float32)
-              for f in range(frames):
-                  t = (t_initial + f/frames) % 1.0
-                  day_factor = 0.5 + 0.5*np.sin((t-0.25)*2*np.pi)
-                  grid = np.copy(trail)
-                  grid *= 0.8
-                  y_center = height//2
-                  for i in range(5 + int(brightness_factor*30)):
-                      y_offset = int(np.sin((f + i)/4) * 3)
-                      x = (f + i) % width
-                      y = y_center + y_offset
-                      color = (int(255*day_factor), 255, int(255*brightness_factor))
-                      for w in range(snake_width):
-                          yy = y + w - snake_width//2
-                          if 0 <= yy < height:
-                              grid[yy, x] = color
-                  img = Image.new('RGB', (width*pixel_size, height*pixel_size), tuple(bg_color))
-                  draw = ImageDraw.Draw(img)
-                  for y0 in range(height):
-                      for x0 in range(width):
-                          c = tuple(np.clip(grid[y0,x0],0,255).astype(int))
-                          if np.any(c != bg_color):
-                              draw.rectangle([x0*pixel_size, y0*pixel_size, (x0+1)*pixel_size-gap, (y0+1)*pixel_size-gap], fill=c)
-                  images.append(img)
-              images[0].save(output_file, save_all=True, append_images=images[1:], duration=duration, loop=0)
-
-          generate_gif(np.array([0,0,0], dtype=np.uint8), gifs['dark'])
-          generate_gif(np.array([30,30,30], dtype=np.uint8), gifs['light'])
-          PYTHON
-
-      # 💾 Faz commit e push dos GIFs gerados
-      - name: Commit e push automático usando GITHUB_TOKEN
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add output/*.gif
-          git commit -m "Atualiza snake ultra-holográfica README-ready 24h interativa" || echo "Sem alterações para commit"
-          git push   # ✅ Agora funciona porque temos permissions: write
+      # 🚚 Faz push dos SVGs gerados para a branch output
+      - name: push github-contribution-grid-snake.svg to the output branch
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
