@@ -4,8 +4,8 @@
  <!-- STATUS das linguagens 
  
   <div>
-   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Lukasuuu&show_icons=true&theme=radical">
-   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Lukasuuu&layout=compact&theme=radical">
+   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Hewllsing&show_icons=true&theme=radical">
+   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Hewllsing&layout=compact&theme=radical">
   </div>-->
 
 
@@ -88,9 +88,9 @@ MODELO ANTIGO DE ICONS
   
 <!-- SNAKE COMMIT'S -->
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Lukasuuu/output/github-contribution-grid-snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Lukasuuu/output/github-contribution-grid-snake.svg">
-  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Lukasuuu/output/github-contribution-grid-snake.svg">
+<source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Hewllsing/Hewllsing/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Hewllsing/Hewllsing/output/github-contribution-grid-snake.svg">
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Hewllsing/Hewllsing/output/github-contribution-grid-snake.svg">
 </picture>
 
 
