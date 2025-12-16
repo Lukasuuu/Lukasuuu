@@ -4,8 +4,8 @@
  <!-- STATUS das linguagens 
  
   <div>
-   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Hewllsing&show_icons=true&theme=radical">
-   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Hewllsing&layout=compact&theme=radical">
+   <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Lukasuuu&show_icons=true&theme=radical">
+   <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Lukasuuu&layout=compact&theme=radical">
   </div>-->
 
 
@@ -17,13 +17,13 @@ MODELO ANTIGO DE ICONS
 
 <div style="display: inline_block">
 <br>
-  <img align="center" alt="Leo-Js" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
-  <img align="center" alt="Leo-Ts" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg">
-  <img align="center" alt="Leo-React" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg">
-  <img align="center" alt="Leo-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
-  <img align="center" alt="Leo-CSS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
-  <img align="center" alt="Leo-Cy" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cypressio/cypressio-original.svg"/>
-  <img align="center" alt="Leo-Py" height="30" width="40" src="https://www.svgrepo.com/show/452091/python.svg"/> 
+  <img align="center" alt="Lucas-Js" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
+  <img align="center" alt="Lucas-Ts" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg">
+  <img align="center" alt="Lucas-React" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg">
+  <img align="center" alt="Lucas-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
+  <img align="center" alt="Lucas-CSS" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
+  <img align="center" alt="Lucas-Cy" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cypressio/cypressio-original.svg"/>
+  <img align="center" alt="Lucas-Py" height="30" width="40" src="https://www.svgrepo.com/show/452091/python.svg"/> 
 </div>
 -->
 
@@ -46,13 +46,13 @@ MODELO ANTIGO DE ICONS
 
 <!--
 <p align="left">
-  <a href="https://www.linkedin.com/in/Ldosouza">
+  <a href="https://www.linkedin.com/in/lucas-gabriel-da-silva-gonçalves-239a3917a">
     <img src="https://skillicons.dev/icons?i=linkedin" />
   </a>
-  <a href="mailto:leonardo23s.pt@gmail.com">
+  <a href="mailto:luc.gabriel.2011@gmail.com">
     <img src="https://skillicons.dev/icons?i=gmail&theme=light" />
   </a>
-  <a href="https://instagram.com/theyousek">
+  <a href="https://instagram.com/lukasu.gabriel">
     <img src="https://skillicons.dev/icons?i=instagram" />
   </a>
 </p> 
@@ -62,9 +62,9 @@ MODELO ANTIGO DE ICONS
   
 <!-- SNAKE COMMIT'S -->
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Hewllsing/Hewllsing/output/github-contribution-grid-snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Hewllsing/Hewllsing/output/github-contribution-grid-snake.svg">
-  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Hewllsing/Hewllsing/output/github-contribution-grid-snake.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake.svg">
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake.svg">
 </picture>
 
 
@@ -72,13 +72,13 @@ MODELO ANTIGO DE ICONS
 
 <!--
 <p align="left">
-  <a href="https://www.linkedin.com/in/Ldosouza">
+<a href="https://www.linkedin.com/in/lucas-gabriel-da-silva-gonçalves-239a3917a">
     <img src="https://skillicons.dev/icons?i=linkedin" />
   </a>
-  <a href="mailto:leonardo23s.pt@gmail.com">
+  <a href="mailto:luc.gabriel.2011@gmail.com">
     <img src="https://skillicons.dev/icons?i=gmail&theme=light" />
   </a>
-  <a href="https://instagram.com/theyousek">
+  <a href="https://instagram.com/lukasu.gabriel">
     <img src="https://skillicons.dev/icons?i=instagram" />
   </a>
 </p> 
@@ -88,9 +88,9 @@ MODELO ANTIGO DE ICONS
   
 <!-- SNAKE COMMIT'S -->
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Hewllsing/Hewllsing/output/github-contribution-grid-snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Hewllsing/Hewllsing/output/github-contribution-grid-snake.svg">
-  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Hewllsing/Hewllsing/output/github-contribution-grid-snake.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake.svg">
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake.svg">
 </picture>
 
 
