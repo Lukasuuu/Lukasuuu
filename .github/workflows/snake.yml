@@ -3,7 +3,7 @@ name: Snake Animation
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 * * * *"  # Executa a cada hora
   push:
     branches:
       - main
@@ -26,6 +26,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install pillow numpy
 
+      - name: Garantir pasta output
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/output
+          touch $GITHUB_WORKSPACE/output/.gitkeep
+
       - name: Gerar Snake GIF Dark e Light
         run: |
           python - << 'PYTHON'
@@ -42,9 +47,11 @@ jobs:
           frames = 720
           duration = 12
 
-          os.makedirs('output', exist_ok=True)
-          gifs = {'dark': 'output/snake_animation_dark.gif',
-                  'light': 'output/snake_animation_light.gif'}
+          output_dir = os.path.join(os.getcwd(), "output")
+          gifs = {
+              'dark': os.path.join(output_dir, 'snake_animation_dark.gif'),
+              'light': os.path.join(output_dir, 'snake_animation_light.gif')
+          }
 
           def generate_gif(bg_color_array, output_file):
               now = datetime.utcnow()
@@ -140,7 +147,6 @@ jobs:
                   for y0, x0 in zip(ys, xs):
                       color = tuple(np.clip(grid[y0,x0],0,255).astype(int))
                       draw.rectangle([x0*pixel_size, y0*pixel_size, (x0+1)*pixel_size-gap, (y0+1)*pixel_size-gap], fill=color)
-                  img = img.filter(ImageFilter.GaussianBlur(radius=3))
                   images.append(img)
 
               images[0].save(output_file, save_all=True, append_images=images[1:], duration=duration, loop=0)
@@ -149,10 +155,11 @@ jobs:
           generate_gif(np.array([30,30,30], dtype=np.float32), gifs['light'])
           PYTHON
 
-      - name: Commit e push automático
+      - name: Commit e push automático usando GITHUB_TOKEN
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add output/*.gif
           git commit -m "Atualiza snake ultra-holográfica README-ready 24h interativa" || echo "Sem alterações para commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+
