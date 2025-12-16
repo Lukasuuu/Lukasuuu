@@ -1,9 +1,10 @@
-name: Generate High-Detail Snake Animation
+name: Snake Animation 24h Realistic
 
 on:
-  schedule:
-    - cron: "0 */24 * * *"  # roda todo dia à meia-noite
   workflow_dispatch:
+  schedule:
+    # Executa a cada hora
+    - cron: "0 * * * *"
   push:
     branches:
       - main
@@ -11,38 +12,97 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    timeout-minutes: 15
 
     steps:
-      # 1️⃣ Checkout do repositório
-      - name: Checkout repository
+      - name: Checar repositório
         uses: actions/checkout@v3
 
-      # 2️⃣ Gerar SVG da snake com alta fidelidade e cores neon
-      - name: Generate high-detail snake SVG
-        uses: Platane/snk/svg-only@v3
+      - name: Configurar Python
+        uses: actions/setup-python@v4
         with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/github-contribution-grid-snake.svg
-            dist/github-contribution-grid-snake-dark.svg
-          # Ajustes de cores e estilo
-          palette-light: "neon-blue, neon-green, neon-purple"
-          palette-dark: "neon-green, neon-magenta, neon-cyan"
-          background-light: "#ffffff"
-          background-dark: "#0d1117"
-          frame-delay: 80        # tempo de animação mais suave
-          pixel-size: 18         # aumenta o tamanho de cada quadrado
-          gap-size: 4            # espaço entre quadrados
-          snake-width: 4         # largura da snake para destacar
+          python-version: '3.11'
 
-      # 3️⃣ Push SVGs para branch `output`
-      - name: Push SVG to output branch
-        uses: crazy-max/ghaction-github-pages@v3
-        with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install pillow numpy
+
+      - name: Gerar Snake Animation 24h Realistic
+        run: |
+          python << 'EOF'
+          from PIL import Image, ImageDraw
+          import numpy as np
+          from datetime import datetime
+
+          # Configurações gerais
+          width, height = 60, 12
+          pixel_size = 20
+          gap = 3
+          snake_width = 2
+          frames = 1440  # 1 frame por minuto → 24h total
+          duration = 10  # ms por frame para não ficar gigante (ajustável)
+
+          # Snake neon colors
+          snake_colors = [
+              (255, 0, 255),
+              (0, 255, 255),
+              (0, 255, 0),
+              (255, 255, 0),
+          ]
+
+          # Cores de fundo dia/noite
+          day_color = np.array([230, 230, 230])
+          night_color = np.array([10, 10, 10])
+
+          # Determina hora atual (UTC) como ponto inicial
+          now = datetime.utcnow()
+          hour = now.hour + now.minute/60
+          t_initial = hour / 24  # normaliza 0–1
+
+          images = []
+
+          for f in range(frames):
+              # Calcula t frame a frame (ciclo 24h)
+              t = (t_initial + f/frames) % 1.0
+              # Interpolação dia/noite usando seno para suavidade
+              t_smooth = 0.5 * (1 + np.sin((t - 0.25) * 2 * np.pi))  # 0=meia-noite, 1=meio-dia
+              bg_color = tuple(int(day_color[i]*t_smooth + night_color[i]*(1-t_smooth)) for i in range(3))
+
+              # Cria grid
+              grid = np.zeros((height, width, 3), dtype=np.uint8)
+              grid[:] = bg_color
+
+              # Posiciona a snake
+              for i in range(10):
+                  x = (f + i*snake_width) % width
+                  y = height // 2
+                  for w in range(snake_width):
+                      yy = y + w - snake_width//2
+                      if 0 <= yy < height:
+                          grid[yy, x] = snake_colors[i % len(snake_colors)]
+
+              # Cria imagem
+              img = Image.new('RGB', (width*pixel_size, height*pixel_size), bg_color)
+              draw = ImageDraw.Draw(img)
+              for y in range(height):
+                  for x in range(width):
+                      color = tuple(grid[y,x])
+                      if color != bg_color:
+                          draw.rectangle(
+                              [x*pixel_size, y*pixel_size, (x+1)*pixel_size-gap, (y+1)*pixel_size-gap],
+                              fill=color
+                          )
+              images.append(img)
+
+          # Salvar GIF
+          images[0].save('snake_animation.gif', save_all=True, append_images=images[1:], duration=duration, loop=0)
+          EOF
+
+      - name: Fazer commit do GIF
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add snake_animation.gif
+          git commit -m "Atualiza animação neon da snake 24h realista"
+          git push
+
