@@ -4,7 +4,6 @@
 🌎 Always learning, exploring new technologies, and improving my craft.  
 🎮 Passionate about coding, gaming, and innovation.  
 
----
 
 ## 🚀 Skills
 <p align="center">
@@ -20,7 +19,6 @@
  	<a href="https://www.twitch.tv/lukasuuuuu" target="_blank"><img src="https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white" target="_blank"></a>
 </div>
 
----
 
 ## 📊 GitHub Stats
 <p align="center">
@@ -28,7 +26,6 @@
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Lukasuuu&layout=compact&theme=default" />
 </p>
 
----
 
 ## 🐍 Contributions
 <p align="center">
