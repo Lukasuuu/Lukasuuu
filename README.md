@@ -13,7 +13,7 @@ Passionate about automation, clean code, and visual storytelling through tech.
 ## 🧠 Skills & Interests
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=c,cpp,cs,py,java,js,typescript,linux,mysql,react,html,css,bootstrap,git,github" />
+    <img src="https://skillicons.dev/icons?i=c,cpp,cs,py,java,js,linux,mysql,react,html,css,git,github" />
   </a>
 </p>
 
