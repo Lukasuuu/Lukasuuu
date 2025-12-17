@@ -35,7 +35,11 @@ Passionate about automation, clean code, and visual storytelling through tech.
 ## 🐍 Contribution Snake — Synthwave Mode 🌌
 
 <p align="center">
-  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake-dark.svg" style="border-radius: 10px; box-shadow: 0 0 15px #00ff00;">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Lukasuuu/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Lukasuuu/output/github-contribution-grid-snake.svg">
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Lukasuuu/output/github-contribution-grid-snake.svg">
+</picture>
 </p>
 
 ---
