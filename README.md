@@ -6,13 +6,9 @@
   <img src="https://img.shields.io/badge/Code%20Style-Neon%20Synthwave-ff00ff?style=for-the-badge">
 </p>
 
----
-
 ## 👨‍💻 Bio
 **Fullstack Web Developer** | Focused on building scalable, creative, and real-world solutions.  
 Passionate about automation, clean code, and visual storytelling through tech.  
-
----
 
 ## 🧠 Skills & Interests
 <p align="center">
@@ -21,8 +17,6 @@ Passionate about automation, clean code, and visual storytelling through tech.
   </a>
 </p>
 
----
-
 <div align="center"> 
   <a href="https://www.linkedin.com/in/lucas-gabriel-da-silva-gonçalves-239a3917a" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
   <a href="mailto:luc.gabriel.2011@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white"></a>
@@ -30,7 +24,16 @@ Passionate about automation, clean code, and visual storytelling through tech.
   <a href="https://www.twitch.tv/lukasuuuuu" target="_blank"><img src="https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white"></a>
 </div>
 
----
+## 📊 GitHub Stats
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Lukasuuu&show_icons=true&theme=radical" alt="GitHub Stats" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Lukasuuu&layout=compact&theme=radical" alt="Top Languages" />
+</p>
+
 
 ## 🐍 Contribution Snake — Synthwave Mode 🌌
 
@@ -41,5 +44,3 @@ Passionate about automation, clean code, and visual storytelling through tech.
   <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake.svg">
 </picture>
 </p>
-
----
