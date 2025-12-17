@@ -1,37 +1,37 @@
-## 👋 Hi, I'm Lucas Gabriel, welcome to my world! 💻🌎
+<h1 align="center">🌌 Lucas Gabriel — Fullstack Developer Synthwave Style 🚀</h1>
 
-💻 Developer focused on building efficient and creative solutions.  
-🌎 Always learning, exploring new technologies, and improving my craft.  
-🎮 Passionate about coding, gaming, and innovation.  
-
-
-## 🚀 Skills
 <p align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=c,cpp,cs,java,py,js,linux,git,github,mysql,react,html,css,wordpress,bootstrap" />
-  </a>
+  <img src="https://img.shields.io/github/followers/Lukasuuu?style=for-the-badge&color=purple">
+  <img src="https://img.shields.io/github/stars/Lukasuuu?style=for-the-badge&color=hotpink">
+  <img src="https://img.shields.io/badge/Code%20Style-Neon%20Synthwave-ff00ff?style=for-the-badge">
 </p>
 
-<div align="center"> 
-  <a href="https://www.linkedin.com/in/lucas-gabriel-da-silva-gonçalves-239a3917a" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
-  <a href="mailto:luc.gabriel.2011@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
-  <a href="https://instagram.com/lukasu.gabriel" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
- 	<a href="https://www.twitch.tv/lukasuuuuu" target="_blank"><img src="https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white" target="_blank"></a>
-</div>
+---
 
+## 👨‍💻 Bio
+**Fullstack Web Developer** | Focused on building scalable, creative, and real-world solutions.  
+Passionate about automation, clean code, and visual storytelling through tech.  
 
-## 📊 GitHub Stats
+---
+
+## 🧠 Skills & Interests
+- ⚙️ Python scripting & automation  
+- 🌐 Git, GitHub & VS Code workflows  
+- 🎨 Creative README.md design (neon, emojis, badges)  
+- 🧼 Project hygiene & maintainability  
+- 🚀 Web development with flair  
+
+---
+
+## 🐍 Contribution Snake — Synthwave Mode 🌌
+
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Lukasuuu&show_icons=true&theme=default" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Lukasuuu&layout=compact&theme=default" />
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake-dark.svg" style="border-radius: 10px; box-shadow: 0 0 15px #00ff00;">
 </p>
 
+---
 
-## 🐍 Contributions
-<p align="center">
-  <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake.svg">
-  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/Lukasuuu/Lukasuuu/output/github-contribution-grid-snake.svg">
-</picture>
-</p>
+## 📫 Let's Connect
+- 💼 [GitHub](https://github.com/Lukasuuu)  
+- 📸 [Instagram](https://instagram.com/Lukasuuu)  
+- 🧠 [LinkedIn](https://linkedin.com/in/Lukasuuu) *(se tiver)*  
