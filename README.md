@@ -27,11 +27,11 @@ Passionate about automation, clean code, and visual storytelling through tech.
 ## 📊 GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Lukasuuu&show_icons=true&theme=radical" alt="GitHub Stats" />
+  <img src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=Lukasuuu&show_icons=true&theme=radical" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Lukasuuu&layout=compact&theme=radical" alt="Top Languages" />
+ <img src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api/top-langs/?username=Lukasuuu&layout=compact&theme=radical" />
 </p>
 
 
