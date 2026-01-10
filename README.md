@@ -27,13 +27,14 @@ Passionate about automation, clean code, and visual storytelling through tech.
 ## 📊 GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=Lukasuuu&show_icons=true&theme=radical" />
+  <img src="https://readme-stats-ashy-kappa.vercel.app/api?username=Lukasuuu&show_icons=true&theme=radical" />
 </p>
+
+## 📘 Top Languages
 
 <p align="center">
- <img src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api/top-langs/?username=Lukasuuu&layout=compact&theme=radical" />
+  <img src="https://readme-stats-ashy-kappa.vercel.app/api/top-langs/?username=Lukasuuu&layout=compact&theme=radical" />
 </p>
-
 
 ## 🐍 Contribution Snake — Synthwave Mode 🌌
 
