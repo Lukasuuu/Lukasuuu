@@ -6,11 +6,13 @@
   <img src="https://img.shields.io/badge/Code%20Style-Neon%20Synthwave-ff00ff?style=for-the-badge">
 </p>
 
-## 👨‍💻 Bio
-**Fullstack Web Developer** | Focused on building scalable, creative, and real-world solutions.  
-Passionate about automation, clean code, and visual storytelling through tech.  
-
-## 🧠 Skills & Interests
+<h1 align="center">  👨‍💻 Bio </h1>
+<p align="center">
+| Fullstack Web Developer | 
+Focused on building scalable, creative, and real-world solutions.  
+<p align="center"> Passionate about automation, clean code, and visual storytelling through tech.  </p>
+</p>
+<h1 align="center">  🧠 Skills & Interests  </h1>
 <p align="center">
   <a href="https://skillicons.dev">
     <img src="https://skillicons.dev/icons?i=c,cpp,cs,py,java,js,linux,mysql,react,html,css,git,github" />
@@ -24,19 +26,19 @@ Passionate about automation, clean code, and visual storytelling through tech.
   <a href="https://www.twitch.tv/lukasuuuuu" target="_blank"><img src="https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white"></a>
 </div>
 
-## 📊 GitHub Stats
+<h1 align="center">  📊 GitHub Stats  </h1>
 
 <p align="center">
   <img src="https://readme-stats-ashy-kappa.vercel.app/api?username=Lukasuuu&show_icons=true&theme=radical" />
 </p>
 
-## 📘 Top Languages
+<h1 align="center">  📘 Top Languages  </h1> 
 
 <p align="center">
   <img src="https://readme-stats-ashy-kappa.vercel.app/api/top-langs/?username=Lukasuuu&layout=compact&theme=radical" />
 </p>
 
-## 🐍 Contribution Snake — Synthwave Mode 🌌
+## <h1 align="center"> 🐍 Contribution Snake — Synthwave Mode 🌌  </h1> 
 
 <p align="center">
 <picture>
