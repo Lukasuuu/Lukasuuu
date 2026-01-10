@@ -8,7 +8,7 @@
 
 <h1 align="center">  👨‍💻 Bio </h1>
 <p align="center">
-| Fullstack Web Developer | 
+Fullstack Web Developer | 
 Focused on building scalable, creative, and real-world solutions.  
 <p align="center"> Passionate about automation, clean code, and visual storytelling through tech.  </p>
 </p>
