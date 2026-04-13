@@ -15,7 +15,7 @@ Focused on building scalable, creative, and real-world solutions.
 <h1 align="center">  🧠 Skills & Interests  </h1>
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=c,cpp,cs,py,java,js,bootstrap,linux,mysql,react,html,css,dotnet,vscode,git,github" />
+    <img src="https://skillicons.dev/icons?i=c,cpp,cs,py,java,js,bootstrap,linux,mysql,html,css,dotnet,vscode,git,github" />
   </a>
 </p>
 
