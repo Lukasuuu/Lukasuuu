@@ -1,0 +1,29 @@
+# BookMe robots.txt
+# This file tells search engines which pages to crawl and index
+
+# Allow all bots to crawl public pages
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /.env
+Disallow: /.git
+Disallow: /node_modules
+
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+Disallow: /dashboard
+Disallow: /admin
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /dashboard
+Disallow: /admin
+
+# Crawl delay (in seconds)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://bookme.pt/sitemap.xml
