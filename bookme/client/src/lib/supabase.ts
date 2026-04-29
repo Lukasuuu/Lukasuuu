@@ -37,6 +37,9 @@ export interface Profile {
   email?: string;
   role: 'owner' | 'staff' | 'admin';
   avatar_url?: string;
+  plan?: string;
+  onboarding_completed?: boolean;
+  marketing_consent?: boolean;
   created_at: string;
   updated_at: string;
 }
