@@ -1,0 +1,40 @@
+{
+  "name": "BookMe - Software de Marcações",
+  "short_name": "BookMe",
+  "description": "Plataforma de marcações e agendamentos online para o seu negócio. Gerencie clientes, staff, serviços e pagamentos.",
+  "start_url": "/dashboard",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0F172A",
+  "theme_color": "#3B82F6",
+  "lang": "pt-PT",
+  "categories": ["business", "productivity"],
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" },
+    { "src": "/icons/icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/icon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nova Marcação",
+      "short_name": "Nova Marcação",
+      "url": "/dashboard/calendar?action=new",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Clientes",
+      "short_name": "Clientes",
+      "url": "/dashboard/clients",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Calendário",
+      "short_name": "Calendário",
+      "url": "/dashboard/calendar",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
