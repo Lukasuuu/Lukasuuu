@@ -1,285 +1,356 @@
-# PROMPT MESTRE — BookMe para Claude Code Local
+# BOOKME — Prompt Mestre para Claude Code Local
+# Repositório: https://github.com/Lukasuuu/Lukasuuu
+# Branch: claude/bookme-testing-analysis-OlOBc
 
-> **Copia e cola este prompt inteiro no Claude Code do teu computador.**
-> Claude Code irá executar tudo automaticamente, perguntar as credenciais necessárias e testar cada funcionalidade.
+Cole o bloco abaixo no terminal com `claude` aberto dentro da pasta bookme:
 
 ---
-
-## PROMPT PARA COLAR NO CLAUDE CODE:
 
 ```
-Vou implementar o BookMe — uma aplicação SaaS de marcações online — localmente no meu computador.
-Age como CEO técnico e faz tudo o que for necessário para a aplicação funcionar completamente.
+És o CEO técnico do BookMe — plataforma SaaS de marcações online.
+Repositório: https://github.com/Lukasuuu/Lukasuuu (pasta bookme/)
+Tens autorização total para ler ficheiros, executar comandos, editar código e fazer commits neste projeto.
+Pede confirmação antes de: apagar ficheiros, fazer push, ou modificar dados de produção.
 
-O repositório já está clonado em: [PASTA_DO_PROJETO]/bookme
-(ou clone com: git clone [URL_DO_REPO] && cd bookme)
+Executa as seguintes fases em ordem. Reporta ✅/❌ em cada passo.
 
-Executa os seguintes passos na ordem exata:
+══════════════════════════════════════════
+FASE 1 — CLONE E SETUP INICIAL
+══════════════════════════════════════════
 
-─────────────────────────────────────────────
-FASE 1 — SETUP DO AMBIENTE
-─────────────────────────────────────────────
+1a. Verificar pré-requisitos:
+    node --version   (requer >= 20)
+    pnpm --version   (requer >= 9)
+    git --version
+    Se algo faltar → instalar e reportar instruções.
 
-1. Verifica se Node.js >= 20, pnpm e git estão instalados
-   - Se faltarem, dá instruções para instalar e para
+1b. Se ainda não clonado:
+    git clone https://github.com/Lukasuuu/Lukasuuu.git
+    cd Lukasuuu/bookme
 
-2. Executa: pnpm install
-   - Se falhar, corrige os erros antes de continuar
+1c. Instalar dependências:
+    pnpm install
+    Se falhar → ler o erro, corrigir, tentar novamente.
 
-3. Verifica se existe .env.local
-   - Se não existir, copia de .env.example: cp .env.example .env.local
+1d. Verificar se .env.local existe:
+    Se não → cp .env.example .env.local
+    Ler o conteúdo do .env.example para saber o que falta.
 
-─────────────────────────────────────────────
-FASE 2 — RECOLHA DE CREDENCIAIS
-─────────────────────────────────────────────
+══════════════════════════════════════════
+FASE 2 — RECOLHA E VERIFICAÇÃO DE CREDENCIAIS
+══════════════════════════════════════════
 
-Para cada serviço abaixo, pergunta-me o valor, acede à URL indicada se necessário, e escreve no .env.local:
+Para cada serviço abaixo, faz estas 3 coisas:
+  A) Lê o valor atual do .env.local
+  B) Se em falta ou placeholder → pergunta ao utilizador e guia para a página exata
+  C) Após obter o valor → testa a API com curl para confirmar que funciona
 
-SUPABASE (obrigatório):
-- Pergunta: "Tens o Supabase configurado?"
-- Se não: abre https://supabase.com → cria projeto → vai a Settings → API
-- Precisa: VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY
-- Após configurar: executa supabase_schema.sql no SQL Editor do Supabase
+─── SUPABASE ───────────────────────────────────────
+Pergunta: "Tens o projeto Supabase criado?"
+Guia: https://supabase.com/dashboard → projeto → Settings → API
+Valores a obter:
+  VITE_SUPABASE_URL        → "Project URL"
+  VITE_SUPABASE_ANON_KEY   → "anon public key"
+  SUPABASE_SERVICE_ROLE_KEY → "service_role key"
+Teste após obter (substitui os valores):
+  curl "[SUPABASE_URL]/rest/v1/businesses?limit=1" \
+    -H "apikey: [ANON_KEY]" -H "Authorization: Bearer [ANON_KEY]"
+Se status != 200/406 → reportar erro e pedir para verificar as chaves.
+Após chaves válidas, perguntar:
+  "Já executaste o supabase_schema.sql no SQL Editor do Supabase?"
+  Se não → mostrar instruções: Dashboard → SQL Editor → New Query → colar supabase_schema.sql → Run
+  Verificar se tabela 'businesses' existe:
+    curl "[SUPABASE_URL]/rest/v1/businesses?limit=1" -H "apikey: [ANON_KEY]" -H "Authorization: Bearer [ANON_KEY]"
+  Reportar resultado.
 
-STRIPE (obrigatório para pagamentos):
-- Pergunta: "Tens o Stripe configurado?"
-- Se não: abre https://dashboard.stripe.com
-- Precisa: VITE_STRIPE_PUBLISHABLE_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET
-- Cria 4 produtos no Stripe (Pro Mensal €14,90, Pro Anual €149, Business Mensal €29,90, Business Anual €299)
-- Precisa dos 4 Price IDs: STRIPE_PRICE_PRO_MONTHLY, STRIPE_PRICE_PRO_YEARLY, STRIPE_PRICE_BUSINESS_MONTHLY, STRIPE_PRICE_BUSINESS_YEARLY
-- E as versões VITE_ para o cliente: VITE_STRIPE_PRICE_PRO_MONTHLY, etc.
+─── STRIPE ─────────────────────────────────────────
+Pergunta: "Tens conta Stripe e os produtos criados?"
+Guia API keys: https://dashboard.stripe.com/apikeys
+Valores a obter:
+  VITE_STRIPE_PUBLISHABLE_KEY → "Publishable key (pk_test_...)"
+  STRIPE_SECRET_KEY           → "Secret key (sk_test_...)"
+Teste:
+  curl https://api.stripe.com/v1/account -u [STRIPE_SECRET_KEY]:
+  Mostrar: email da conta, país, modo (test/live).
+Depois perguntar: "Tens os 4 produtos criados no Stripe?"
+Guia: https://dashboard.stripe.com/products → Add product
+  Produto 1: BookMe Pro Mensal → €14,90 recorrente/mensal
+  Produto 2: BookMe Pro Anual  → €149 recorrente/anual
+  Produto 3: BookMe Business Mensal → €29,90 recorrente/mensal
+  Produto 4: BookMe Business Anual  → €299 recorrente/anual
+Obter os 4 Price IDs (price_...) e escrever em .env.local:
+  STRIPE_PRICE_PRO_MONTHLY, STRIPE_PRICE_PRO_YEARLY
+  STRIPE_PRICE_BUSINESS_MONTHLY, STRIPE_PRICE_BUSINESS_YEARLY
+  VITE_STRIPE_PRICE_PRO_MONTHLY, VITE_STRIPE_PRICE_PRO_YEARLY
+  VITE_STRIPE_PRICE_BUSINESS_MONTHLY, VITE_STRIPE_PRICE_BUSINESS_YEARLY
+Verificar cada Price ID:
+  curl https://api.stripe.com/v1/prices/[PRICE_ID] -u [SK]:
+Webhook: perguntar "Queres configurar webhook agora ou usar Stripe CLI?"
+  Se CLI: mostrar comando: stripe listen --forward-to localhost:3000/api/webhooks/stripe
+  Se Dashboard: guiar https://dashboard.stripe.com/webhooks → Add endpoint
+    URL: http://localhost:3000/api/webhooks/stripe
+    Eventos: checkout.session.completed, customer.subscription.updated,
+             customer.subscription.deleted, invoice.payment_failed
+  Obter STRIPE_WEBHOOK_SECRET → escrever em .env.local.
 
-RESEND (obrigatório para emails):
-- Pergunta: "Tens conta no Resend?"
-- Se não: abre https://resend.com → cria conta
-- Precisa: RESEND_API_KEY, RESEND_FROM_EMAIL, RESEND_FROM_NAME=BookMe, ADMIN_EMAIL
+─── RESEND (EMAIL) ──────────────────────────────────
+Pergunta: "Tens conta Resend?"
+Guia: https://resend.com/api-keys → Create API Key
+Valores: RESEND_API_KEY, RESEND_FROM_EMAIL, RESEND_FROM_NAME=BookMe
+Obter ADMIN_EMAIL (email onde chegarão formulários de contacto).
+Teste:
+  curl https://api.resend.com/domains -H "Authorization: Bearer [KEY]"
+  Mostrar domínios verificados (ou aviso se nenhum).
+Enviar email de teste:
+  curl -X POST https://api.resend.com/emails \
+    -H "Authorization: Bearer [KEY]" \
+    -H "Content-Type: application/json" \
+    -d '{"from":"onboarding@resend.dev","to":"[ADMIN_EMAIL]","subject":"BookMe: teste de email","html":"<h1>Funciona!</h1><p>O BookMe está a enviar emails corretamente.</p>"}'
+  Confirmar com utilizador se email chegou.
 
-VAPID KEYS (para notificações push):
-- Gera automaticamente: npx web-push generate-vapid-keys
-- Escreve VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY, VAPID_SUBJECT no .env.local
+─── TWILIO/WHATSAPP (opcional) ──────────────────────
+Perguntar: "Queres configurar notificações WhatsApp? (s/N)"
+Se sim:
+  Guia: https://console.twilio.com → Account Info
+  Valores: TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_WHATSAPP_NUMBER
+  Teste:
+    curl https://api.twilio.com/2010-04-01/Accounts/[SID].json -u [SID]:[TOKEN]
+  Reportar status da conta.
+Se não → escrever nota no .env.local e continuar.
 
-TWILIO/WHATSAPP (opcional):
-- Pergunta: "Queres configurar notificações WhatsApp?"
-- Se sim: TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_WHATSAPP_NUMBER
+─── TELEGRAM (opcional) ─────────────────────────────
+Perguntar: "Queres notificações Telegram? (s/N)"
+Se sim:
+  Guia: Telegram → abrir @BotFather → /newbot → copiar token
+  Valor: TELEGRAM_BOT_TOKEN
+  Teste:
+    curl https://api.telegram.org/bot[TOKEN]/getMe
+  Mostrar nome e username do bot.
 
-TELEGRAM (opcional):
-- Pergunta: "Queres notificações Telegram?"
-- Se sim: TELEGRAM_BOT_TOKEN
+─── VAPID KEYS (push PWA) ───────────────────────────
+Gerar automaticamente (não perguntar):
+  npx web-push generate-vapid-keys
+Escrever no .env.local:
+  VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY
+  VAPID_SUBJECT=mailto:[ADMIN_EMAIL]
+Confirmar geração e mostrar a chave pública.
 
-─────────────────────────────────────────────
-FASE 3 — GERAR ASSETS PWA
-─────────────────────────────────────────────
+─── CONFIG FINAL ────────────────────────────────────
+Escrever no .env.local:
+  VITE_APP_URL=http://localhost:3000
+  NODE_ENV=development
+  PORT=3000
 
-1. Instala sharp: pnpm add -D sharp
-2. Executa: node scripts/generate-icons.js
-3. Verifica que foram criados os ficheiros em client/public/icons/
+══════════════════════════════════════════
+FASE 3 — VERIFICAÇÃO AUTOMÁTICA DE TODAS AS APIs
+══════════════════════════════════════════
 
-─────────────────────────────────────────────
-FASE 4 — ARRANCAR E TESTAR
-─────────────────────────────────────────────
+Executar o script de verificação:
+  node scripts/verify-env.js
 
-1. Executa: pnpm dev
-2. Aguarda o servidor arrancar na porta 3000
-3. Abre http://localhost:3000 no browser
+Ler o relatório de saída.
+Para cada ❌ → corrigir antes de continuar.
+Para cada ⚠ → mostrar ao utilizador e perguntar se quer resolver agora.
 
-Testa cada item desta lista e reporta ✅ ou ❌ com o erro:
+══════════════════════════════════════════
+FASE 4 — GERAR ASSETS PWA
+══════════════════════════════════════════
 
-LANDING PAGE:
-- [ ] Página carrega sem erros no console
-- [ ] Navbar com link "Começar Grátis" funciona
-- [ ] Pricing mostra IVA incluído
-- [ ] Footer tem Livro de Reclamações e ODR
-- [ ] Cookie banner aparece
+4a. Instalar sharp:
+    pnpm add -D sharp
 
-AUTH:
-- [ ] Criar conta em /signup
-- [ ] Login funciona em /login
-- [ ] Onboarding Wizard aparece após registo
-- [ ] Wizard Step 3 (serviço) guarda na base de dados
-- [ ] Wizard Step 4 (staff) guarda na base de dados
+4b. Gerar ícones:
+    node scripts/generate-icons.js
 
-DASHBOARD (após login):
-- [ ] Dashboard carrega com métricas
-- [ ] /dashboard/services → criar serviço → aparece
-- [ ] /dashboard/staff → criar membro → aparece  
-- [ ] /dashboard/clients → criar cliente → aparece
-- [ ] /dashboard/calendar → calendário visível
+4c. Verificar ficheiros criados:
+    ls client/public/icons/
+    ls client/public/og-image.png
 
-MARCAÇÕES PÚBLICAS:
-- [ ] Aceder a /book/[slug-do-negocio]
-- [ ] Selecionar serviço → profissional → data → hora
-- [ ] Horários disponíveis aparecem (sem conflitos)
-- [ ] Confirmar marcação → aparece no dashboard
+══════════════════════════════════════════
+FASE 5 — SUBSTITUIR PLACEHOLDERS LEGAIS
+══════════════════════════════════════════
 
-PAGAMENTOS STRIPE:
-- [ ] /dashboard/billing carrega planos
-- [ ] Clicar "Upgrade Pro" → abre Stripe Checkout
-- [ ] Usar cartão teste: 4242 4242 4242 4242, qualquer data futura, 123
-- [ ] Após pagamento → badge "Pro" aparece no dashboard
+Pergunta ao utilizador estes dados (um de cada vez, com confirmação):
+  1. "Nome completo da empresa ou nome individual:" → [NOME_EMPRESA]
+  2. "NIF (Número de Identificação Fiscal):" → [NIF]
+  3. "Morada fiscal completa:" → [MORADA_FISCAL]
+  4. "Email de contacto público:" → [EMAIL_CONTACTO]
+  5. "Email do DPO (Data Protection Officer) — pode ser o mesmo:" → [EMAIL_DPO]
+  6. "Telefone de contacto (opcional, Enter para saltar):" → [TELEFONE]
+  7. "Cidade:" → [CIDADE]
+  8. "Domínio (Enter para usar bookme.pt como placeholder):" → [DOMINIO]
 
-RELATÓRIOS:
-- [ ] /dashboard/reports carrega gráficos
-- [ ] Top 5 serviços bloqueado no plano free
+Confirmar: "Vou substituir estes dados em PrivacyPolicy.tsx, TermsAndConditions.tsx, Footer.tsx, robots.txt, sitemap.xml e index.html. Confirmas? (s/N)"
 
-LEGAL:
-- [ ] /privacy-policy carrega (sem [PLACEHOLDER])
-- [ ] /terms-and-conditions carrega (sem [PLACEHOLDER])
-- [ ] /contact → formulário de contacto funciona
+Se sim → fazer substituições e mostrar um diff resumido.
 
-─────────────────────────────────────────────
-FASE 5 — CORRIGIR O QUE FALHAR
-─────────────────────────────────────────────
+══════════════════════════════════════════
+FASE 6 — ARRANCAR E TESTAR LOCALHOST
+══════════════════════════════════════════
 
-Para cada ❌ na lista de testes:
-1. Lê o erro no console
-2. Identifica o ficheiro e linha do problema
-3. Corrige o código
-4. Volta a testar até passar a ✅
+6a. Arrancar servidor:
+    pnpm dev
+    Aguardar mensagem "Local: http://localhost:3000"
 
-─────────────────────────────────────────────
-FASE 6 — SUBSTITUIR PLACEHOLDERS LEGAIS
-─────────────────────────────────────────────
+6b. Testar cada rota (usar fetch ou curl para verificar HTTP 200):
+    curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/
+    curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/login
+    curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/signup
+    curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/privacy-policy
+    curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/terms-and-conditions
+    Reportar resultado de cada rota.
 
-Pergunta-me estes dados para completar os documentos legais:
-1. Nome completo da empresa/individual
-2. NIF (Número de Identificação Fiscal)
-3. Morada completa
-4. Email de contacto
-5. Telefone (opcional)
-6. DPO (Data Protection Officer) — nome e email
-7. Domínio final (ex: bookme.pt) — pode ser placeholder por agora
+6c. Testar API backend:
+    curl -s http://localhost:3000/api/notifications/send \
+      -X POST -H "Content-Type: application/json" \
+      -d '{"type":"test"}' | head -c 200
+    Deve retornar JSON (não HTML nem erro 404).
 
-Substitui todos os [PLACEHOLDER] nos ficheiros:
-- client/src/pages/PrivacyPolicy.tsx
-- client/src/pages/TermsAndConditions.tsx
-- client/src/components/Footer.tsx
-- client/public/robots.txt
-- client/public/sitemap.xml
-- client/index.html
+6d. Instruir utilizador a completar testes manuais no browser:
+    Mostrar checklist do CLAUDE.md (secção "CHECKLIST DE TESTES OBRIGATÓRIOS").
+    Pedir ao utilizador para confirmar cada item.
 
-─────────────────────────────────────────────
-FASE 7 — GUIAR PARA O DOMÍNIO E DEPLOY
-─────────────────────────────────────────────
+6e. Para cada item que falhar → ler o erro no console do browser → identificar causa → corrigir.
 
-Após tudo funcionar em localhost:
+══════════════════════════════════════════
+FASE 7 — COMMIT E PUSH DAS ALTERAÇÕES
+══════════════════════════════════════════
 
-1. Guia-me para comprar o domínio:
-   - Recomenda: https://www.eurodns.com/pt (para .pt) ou Namecheap (.com/.app)
-   - Explica: .pt requer NIF português, custo ~€15/ano
-   - Alternativas: getbookme.com, bookme.app
+7a. Ver o que mudou:
+    git status
+    git diff --stat
 
-2. Deploy no Vercel (gratuito):
-   - Instala CLI: npm i -g vercel
-   - Na pasta do projeto: vercel
-   - Configura todas as variáveis do .env.local no Vercel Dashboard
-   - Liga o domínio comprado
+7b. Confirmar com utilizador: "Posso fazer commit e push das alterações? (s/N)"
 
-3. Após deploy, atualiza:
-   - VITE_APP_URL para o domínio real
-   - Stripe Webhook para URL de produção
-   - Supabase Auth URL
-   - Resend domínio verificado
+7c. Se sim:
+    git add -A
+    git commit -m "chore: configure environment, replace legal placeholders, generate PWA assets"
+    git push origin claude/bookme-testing-analysis-OlOBc
 
-─────────────────────────────────────────────
-FASE 8 — PLANO DE MARKETING E PRIMEIRAS VENDAS
-─────────────────────────────────────────────
+══════════════════════════════════════════
+FASE 8 — GUIA DE DOMÍNIO E DEPLOY
+══════════════════════════════════════════
 
-Após o deploy, lê o ficheiro marketing/ESTRATEGIA_LANCAMENTO.md e:
+Mostrar ao utilizador:
 
-1. Cria os Stripe Payment Links para venda direta:
-   - Pro Mensal: dashboard.stripe.com/payment-links
-   - Pro Anual: mesma página
-   
-2. Prepara o checklist de conteúdo para a primeira semana
+COMPRAR DOMÍNIO:
+  Para .pt (requer NIF português):
+    https://www.eurodns.com/pt  (recomendado, aceita .pt)
+    https://www.pt-registrar.pt
+    Custo: ~€15/ano
+  Para .com/.app (sem restrições):
+    https://www.namecheap.com → "bookme.app" ou "getbookme.com"
+    Custo: ~€10/ano
 
-3. Lista as primeiras 10 ações de outreach a fazer
+DEPLOY VERCEL (gratuito):
+  1. npm i -g vercel
+  2. vercel  (na pasta bookme)
+  3. Seguir assistente → selecionar framework "Vite"
+  4. Abrir https://vercel.com/dashboard → projeto → Settings → Environment Variables
+  5. Copiar TODAS as variáveis do .env.local
+  6. Ligar domínio: Vercel → projeto → Domains → Add domain
+  7. Copiar registos DNS para o registador do domínio
 
-4. Reporta o estado final: o que está pronto, o que falta, custos estimados
+APÓS DEPLOY:
+  - Atualizar VITE_APP_URL para domínio real no Vercel
+  - Recriar Stripe Webhook com URL de produção
+  - Supabase: Authentication → URL Configuration → Site URL → domínio real
+  - Resend: verificar domínio → enviar emails com endereço próprio
 
-─────────────────────────────────────────────
-RELATÓRIO FINAL
-─────────────────────────────────────────────
+══════════════════════════════════════════
+FASE 9 — STRIPE PAYMENT LINKS E PRIMEIRAS VENDAS
+══════════════════════════════════════════
 
-No final, apresenta um relatório executivo com:
+Criar Payment Links no Stripe para vender sem site:
+  1. Abrir https://dashboard.stripe.com/payment-links
+  2. Criar link para Pro Mensal (€14,90) → copiar URL
+  3. Criar link para Pro Anual (€149) → copiar URL
+  4. Criar link para Business Mensal (€29,90) → copiar URL
 
-✅ O que está a funcionar
-❌ O que precisa de atenção
-🔧 Próximas 3 ações prioritárias
-💰 Custos mensais estimados (Supabase free, Vercel free, Stripe 1.4%+€0.25/transação, Resend free até 100 emails/dia)
-📈 Projeção de receita com 10 clientes Pro: €149/mês
+Mostrar ao utilizador os links criados e onde usá-los:
+  - Bio Instagram
+  - WhatsApp Business
+  - Email de outreach
+  - Stories com link direto
+
+Ler o ficheiro marketing/ESTRATEGIA_LANCAMENTO.md e mostrar:
+  - Próximas 3 ações de marketing esta semana
+  - Script do primeiro Reel (pronto para gravar)
+  - Template de DM para primeiros 10 prospects
+
+══════════════════════════════════════════
+FASE 10 — RELATÓRIO EXECUTIVO FINAL
+══════════════════════════════════════════
+
+Apresentar relatório no formato:
+
+─── STATUS TÉCNICO ────────────────────
+✅ A funcionar: [lista]
+⚠  Pendente: [lista]
+❌ Problemas: [lista]
+
+─── CUSTOS MENSAIS ESTIMADOS ──────────
+Supabase Free:    €0/mês
+Vercel Free:      €0/mês (até 100GB bandwidth)
+Resend Free:      €0/mês (até 3.000 emails/mês)
+Stripe:           1,4% + €0,25 por transação (Portugal/UE)
+Twilio WhatsApp:  ~€0,05 por mensagem (opcional)
+Total mínimo:     €0/mês
+
+─── PROJEÇÃO DE RECEITA ───────────────
+5 clientes Pro:      €74,50/mês
+10 clientes Pro:     €149/mês
+20 clientes Pro:     €298/mês
+5 clientes Business: €149,50/mês
+Break-even Ads:      ~3 clientes Pro pagam o mês de Meta Ads
+
+─── PRÓXIMAS 3 AÇÕES PRIORITÁRIAS ────
+1. [ação mais urgente]
+2. [segunda ação]
+3. [terceira ação]
+
+─── LINKS IMPORTANTES ─────────────────
+App local:     http://localhost:3000
+Dashboard:     http://localhost:3000/dashboard
+Booking teste: http://localhost:3000/book/[slug]
+GitHub PR:     https://github.com/Lukasuuu/Lukasuuu/pull/1
+Supabase:      https://supabase.com/dashboard
+Stripe:        https://dashboard.stripe.com
 ```
 
 ---
 
-## COMO USAR ESTE PROMPT
-
-1. Abre o **Claude Code** no terminal dentro da pasta do projeto:
-   ```bash
-   cd /caminho/para/bookme
-   claude
-   ```
-
-2. Cola o prompt acima (entre as ``` ```)
-
-3. Responde às perguntas do Claude Code conforme ele pede
-
-4. O Claude irá:
-   - Executar comandos automaticamente
-   - Pedir credenciais quando necessário
-   - Abrir URLs nos comentários para te guiar
-   - Testar cada funcionalidade
-   - Reportar o estado de cada teste
-
----
-
-## PRÉ-REQUISITOS (instalar antes)
+## PRÉ-REQUISITOS (instalar antes de colar o prompt)
 
 ```bash
 # macOS
-brew install node
+brew install node && npm install -g pnpm
+
+# Windows (PowerShell como Admin)
+winget install OpenJS.NodeJS.LTS
 npm install -g pnpm
 
-# Windows
-# Baixar Node.js de: https://nodejs.org/en/download
-# Depois: npm install -g pnpm
-
-# Linux (Ubuntu/Debian)
+# Linux
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-sudo apt-get install -y nodejs
-npm install -g pnpm
+sudo apt-get install -y nodejs && npm install -g pnpm
 
-# Instalar Claude Code (se não tiver):
+# Claude Code (se não instalado)
 npm install -g @anthropic-ai/claude-code
+
+# Iniciar Claude Code no projeto
+cd Lukasuuu/bookme
+claude
 ```
 
----
-
-## ALTERNATIVA: SETUP AUTOMÁTICO
-
-Em vez do prompt, podes correr o script de setup:
+## ALTERNATIVA: Script automático (sem Claude Code)
 
 ```bash
-cd bookme
+cd Lukasuuu/bookme
 bash scripts/setup.sh
 ```
 
-O script pergunta cada credencial e configura tudo automaticamente.
+## Verificar apenas credenciais (após ter .env.local)
 
----
-
-## CREDENCIAIS QUE PRECISAS TER À MÃO
-
-Antes de começar, abre estas abas no browser:
-
-| Serviço | URL |
-|---|---|
-| Supabase | https://supabase.com/dashboard |
-| Stripe | https://dashboard.stripe.com |
-| Resend | https://resend.com/dashboard |
-| Twilio (opcional) | https://console.twilio.com |
-| Telegram BotFather (opcional) | https://t.me/BotFather |
-| Vercel (para deploy) | https://vercel.com/dashboard |
-
----
-
-*Documento gerado automaticamente. Atualizado em: Abril 2026.*
+```bash
+node scripts/verify-env.js
+```
